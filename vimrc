@@ -10,6 +10,17 @@
 "	    for OpenVMS:  sys$login:.vimrc
 
 " Jordan custom
+
+" Pretty colors
+
+set background=dark
+set t_Co=256
+
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+
+
+silent! colorscheme gruvbox
+
 set number
 set expandtab
 set tabstop=4
@@ -20,6 +31,20 @@ set softtabstop=4
 set foldmethod=indent
 set foldlevel=99
 
+
+" set the desired text with for gq
+set textwidth=120
+
+autocmd BufRead  COMMIT_EDITMSG  setlocal tw=72 colorcolumn=72
+
+" draw a vertical line at 120
+" https://stackoverflow.com/a/3765575
+if exists('+colorcolumn')
+    set colorcolumn=120
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 " Enable folding with the spacebar
 nnoremap <space> za
 
@@ -27,8 +52,20 @@ nnoremap <space> za
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+
+" Disable arrow keys to break bad habit
+"noremap <Up> <NOP>
+"noremap <Down> <NOP>
+"noremap <Left> <NOP>
+"noremap <Right> <NOP>
+
 " allow using // to search for visual select
 vnoremap // y/<C-R>"<CR>
+call plug#begin('~/.vim/plugged')
+Plug 'jordan-heemskerk/vim-pydocstring'
+Plug 'Vimjas/vim-python-pep8-indent'
+Plug 'vim-scripts/groovy.vim'
+call plug#end()
 
 " End Jordan custome
 
@@ -91,9 +128,6 @@ if has("autocmd")
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
   au!
-
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
