@@ -49,7 +49,6 @@ endif
 nnoremap <space> za
 
 " Highlight trailing whitepsace
-highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
 
@@ -62,10 +61,13 @@ match ExtraWhitespace /\s\+$/
 " allow using // to search for visual select
 vnoremap // y/<C-R>"<CR>
 call plug#begin('~/.vim/plugged')
-Plug 'jordan-heemskerk/vim-pydocstring'
+Plug 'jordan-heemskerk/vim-pydocstring', { 'branch': 'google-style' }
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-scripts/groovy.vim'
+Plug 'wikitopian/hardmode'
 call plug#end()
+
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 " End Jordan custome
 
