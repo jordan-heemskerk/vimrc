@@ -18,7 +18,6 @@ set t_Co=256
 
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-
 silent! colorscheme gruvbox
 
 set number
@@ -67,7 +66,10 @@ Plug 'vim-scripts/groovy.vim'
 Plug 'wikitopian/hardmode'
 call plug#end()
 
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+
+"alias :w !sudo tee % > /dev/null to :Sw to save as sudo
+command! -nargs=0 Sw w !sudo tee % > /dev/null
 
 " End Jordan custome
 
