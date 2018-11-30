@@ -57,6 +57,8 @@ match ExtraWhitespace /\s\+$/
 "noremap <Left> <NOP>
 "noremap <Right> <NOP>
 
+let g:ale_completion_enabled = 1
+
 " allow using // to search for visual select
 vnoremap // y/<C-R>"<CR>
 call plug#begin('~/.vim/plugged')
@@ -64,7 +66,7 @@ Plug 'jordan-heemskerk/vim-pydocstring', { 'branch': 'google-style' }
 Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-scripts/groovy.vim'
 Plug 'wikitopian/hardmode'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 call plug#end()
 
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
@@ -72,16 +74,10 @@ call plug#end()
 "alias :w !sudo tee % > /dev/null to :Sw to save as sudo
 command! -nargs=0 Sw w !sudo tee % > /dev/null
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_python_flake8_args = '--max-line-length 120'
+let g:ale_python_flake8_options = '--max-line-length=120'
+let g:ale_linters = { 'python': ['pyls', 'flake8'] }
+let g:ale_completion_delay = 1
 
 " End Jordan custome
 
