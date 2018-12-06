@@ -78,6 +78,7 @@ command! -nargs=0 Sw w !sudo tee % > /dev/null
 let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_linters = { 'python': ['pyls', 'flake8'] }
 let g:ale_completion_delay = 1
+let g:ale_python_pyls_executable = 'python3 /usr/bin/pyls'
 
 " End Jordan custome
 
