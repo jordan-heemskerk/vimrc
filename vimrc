@@ -77,8 +77,13 @@ command! -nargs=0 Sw w !sudo tee % > /dev/null
 
 let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_linters = { 'python': ['pyls', 'flake8'] }
-let g:ale_completion_delay = 1
 let g:ale_python_pyls_executable = 'python3 /usr/bin/pyls'
+
+" Customize ALE gutter signs (so style (ie. flake8) errors are only warnings)
+let g:ale_sign_column_always = 1
+let g:ale_sign_style_error = '--'
+highlight link ALEStyleErrorSign AleWarningSign
+
 
 " End Jordan custome
 
