@@ -84,6 +84,9 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_style_error = '--'
 highlight link ALEStyleErrorSign AleWarningSign
 
+" Sync the unamed register with the clipboard register
+" https://stackoverflow.com/a/23947324
+set clipboard^=unnamed
 
 " End Jordan custome
 
