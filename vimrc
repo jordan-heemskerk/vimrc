@@ -13,6 +13,7 @@
 
 " Pretty colors
 
+"set termguicolors
 set background=dark
 set t_Co=256
 
@@ -78,6 +79,15 @@ command! -nargs=0 Sw w !sudo tee % > /dev/null
 let g:ale_python_flake8_options = '--max-line-length=120'
 let g:ale_linters = { 'python': ['pyls', 'flake8'] }
 let g:ale_python_pyls_executable = 'python3 /usr/bin/pyls'
+let g:ale_python_pyls_config = {
+      \   'pyls': {
+      \     'plugins': {
+      \       'pylint': {
+      \         'enabled': v:false
+      \       }
+      \     }
+      \   }
+      \ }
 
 " Customize ALE gutter signs (so style (ie. flake8) errors are only warnings)
 let g:ale_sign_column_always = 1
@@ -87,6 +97,9 @@ highlight link ALEStyleErrorSign AleWarningSign
 " Sync the unamed register with the clipboard register
 " https://stackoverflow.com/a/23947324
 set clipboard^=unnamed
+
+" Don't insert anything from autocomplete unless it is actually selected
+set completeopt+=noinsert
 
 " End Jordan custome
 
