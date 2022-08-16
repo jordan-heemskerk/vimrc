@@ -19,8 +19,6 @@ set t_Co=256
 
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 
-silent! colorscheme gruvbox
-
 set number
 set expandtab
 set tabstop=4
@@ -48,8 +46,6 @@ endif
 " Enable folding with the spacebar
 nnoremap <space> za
 
-" Highlight trailing whitepsace
-match ExtraWhitespace /\s\+$/
 
 
 " Disable arrow keys to break bad habit
@@ -68,7 +64,13 @@ Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'vim-scripts/groovy.vim'
 Plug 'wikitopian/hardmode'
 Plug 'w0rp/ale'
+Plug 'morhetz/gruvbox'
 call plug#end()
+
+colorscheme gruvbox
+
+" Highlight trailing whitepsace
+match ExtraWhitespace /\s\+$/
 
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
